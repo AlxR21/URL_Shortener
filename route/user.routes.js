@@ -3,7 +3,7 @@ import {getUserByEmail} from '../services/user.service.js'
 import {hashPasswordWithSalt} from '../utils/hash.js'
 import {signUpPostRequestBodySchema, loginPostRequestBodySchema} from '../validation/request.validation.js'
 import { dbInsert } from '../db/db.operation.js';
-import jwt from 'jsonwebtoken';
+import {createUserToken} from '../utils/token.js'
 
 
 const router  = express.Router();
@@ -70,9 +70,7 @@ router.post('/login', async(req, res) => {
         })
     }
 
-    const token = jwt.sign({
-        id: user.id,
-    }, process.env.JWT_SECRET)
+    const token = await createUserToken({id: user.id});
 
     return res.json({
         token
