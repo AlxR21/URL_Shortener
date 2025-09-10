@@ -26,3 +26,22 @@ req.user = payload;
 next();
 
 }
+
+/**
+ * 
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ * @param {import("express").NextFunction} next 
+ */
+
+export function ensureAuthenticated(req, res, next){
+    if(!req.user || !req.user.id){ return res
+    .status(401)
+    .json({
+        error: 'You must have an account'
+    });
+}
+
+    next();
+    
+}
