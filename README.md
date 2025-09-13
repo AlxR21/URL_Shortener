@@ -1,45 +1,58 @@
-#Scalable URL Shortener Service
+# **Scalable URL Shortener Service**
 This project is a high-performance, scalable URL shortener service built with a modern backend stack. It provides a robust and secure solution for creating shortened links, complete with user authentication and authorization. The entire application is designed to be portable and easy to set up using containerization.
 
-##Features
-###Custom URL Shortening: Converts long URLs into manageable, short links.
+## **Features**
+### **Custom URL Shortening:** 
+Converts long URLs into manageable, short links.
 
-###User Authentication & Authorization: Secure user sign-up and login system to manage links.
+### **User Authentication & Authorization:** 
+Secure user sign-up and login system to manage links.
 
-###Scalable Architecture: Built to handle a high volume of requests efficiently.
+### **Scalable Architecture:** 
+Built to handle a high volume of requests efficiently.
 
-###Robust API: A well-defined and reliable API for interacting with the service.
+### **Robust API:** 
+A well-defined and reliable API for interacting with the service.
 
-###Type-Safe Database Operations: Enhanced data integrity and developer experience with an ORM.
+### **Type-Safe Database Operations:** 
+Enhanced data integrity and developer experience with an ORM.
 
-###Containerized Environment: Uses Docker for a consistent and isolated development and deployment environment.
+### **Containerized Environment:**
+Uses Docker for a consistent and isolated development and deployment environment.
 
-##Tech Stack
-###Backend: Node.js, Express.js
+## **Tech Stack**
+### **Backend:**
+Node.js, Express.js
 
-###Database: PostgreSQL
+### **Database:** 
+PostgreSQL
 
-###Containerization: Docker
+### **Containerization:** 
+Docker
 
-###ORM: Drizzle ORM for type-safe database queries.
+### **ORM:**
+Drizzle ORM for type-safe database queries.
 
-###Validation: Zod for rigorous request validation.
+### **Validation:** 
+Zod for rigorous request validation.
 
-###Package Manager: PNPM
+### **Package Manager:** 
+PNPM
 
-###API Testing: Postman for route verification and testing.
+### **API Testing:** 
+Postman for route verification and testing.
 
-##Getting Started
+## **Getting Started**
 Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-###Prerequisites
+### **Prerequisites**
 Node.js
 
 PNPM
 
 Docker and Docker Compose
 
-###Installation
+### **Installation**
 Clone the repository:
 
 ```
@@ -73,7 +86,7 @@ pnpm start
 
 The server should now be running on http://localhost:&000.
 
-API Endpoints
+## **API Endpoints**
 The API routes were thoroughly tested using Postman. Below is a summary of the available endpoints.
 
 -`POST /signup` - Register a new user.
