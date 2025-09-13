@@ -84,7 +84,7 @@ Start the server:
 pnpm start
 ```
 
-The server should now be running on http://localhost:&000.
+The server should now be running on http://localhost:8000.
 
 ## **API Endpoints**
 The API routes were thoroughly tested using Postman. Below is a summary of the available endpoints.
