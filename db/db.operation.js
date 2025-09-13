@@ -3,7 +3,7 @@ import { userTable } from '../models/user.model.js';
 import {urlsTable} from '../models/url.model.js'
 
 export  async function dbInsert(firstname, lastname, email, password, salt){
-const user = db.insert(userTable).values({
+const user = await db.insert(userTable).values({
     firstname,
     lastname,
     email,

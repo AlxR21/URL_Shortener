@@ -1,9 +1,11 @@
 import express from 'express';
-import {shortenPostRequestBodySchema} from '../validation/request.validation.js'
+import {shortenPostRequestBodySchema} from '../validation/request.validation.js';
 import {nanoid} from 'nanoid'
-import {dbInsertURL} from '../db/db.operation.js'
-import {ensureAuthenticated} from '../middlewares/auth.middleware.js'
-import {urlsTable} from '../models/url.model.js'
+import {dbInsertURL} from '../db/db.operation.js';
+import {ensureAuthenticated, authenticationMiddleware} from '../middlewares/auth.middleware.js';
+import {db} from '../db/index.js'
+import { urlsTable } from '../models/url.model.js';
+import {eq} from 'drizzle-orm';
 
 const router = express.Router();
 
@@ -27,6 +29,50 @@ return res.status(201).json({
     shortCode: result.shortCode, 
     targetURL: result.targetUrl
 })
+});
+
+router.get('/codes', ensureAuthenticated, async function(req, res) {
+    const codes = await db
+    .select({
+        shortCode: urlsTable.shortCode,
+        targetURL: urlsTable.targetURL
+    })
+    .from(urlsTable)
+    .where(eq(urlsTable.userId, req.user.id));
+
+    return res.status(200).json({codes});
+});
+
+router.delete('/:id', ensureAuthenticated, async function (req, res){
+    const id = req.params.id
+    await db.delete(urlsTable)
+    .where(and(
+        (eq(urlsTable.id, id)),
+        (eq(urlsTable.userId, req.user.id))
+              )
+          );
+
+    return res.status(200).json({
+        message: "Successfully deleted your Shortened URL."
+    })
+})
+
+router.get('/:shortCode', async function (req, res) {
+    const code = req.params.shortCode;
+
+    const [result] =await db.select({
+        targetURL: urlsTable.targetURL,
+    })
+    .from(urlsTable)
+    .where(eq(urlsTable.shortCode, code));
+
+    if(!result){
+        return res.status(400).json({
+            error: "An Invalid URL"
+        })
+    }
+
+    return res.redirect(result.targetURL);
 })
 
 export default router;

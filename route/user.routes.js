@@ -33,7 +33,7 @@ if(existingUser)return res.status(400).json({
     error: `User with ${email} already exists.`
 })
 
-const { salt, hashedPassword } = hashPasswordWithSalt(password);
+const { salt, password: hashedPassword } = hashPasswordWithSalt(password);
 
 
 const [user] = await dbInsert(firstname, lastname, email, hashedPassword, salt);
