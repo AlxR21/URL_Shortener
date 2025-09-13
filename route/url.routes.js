@@ -5,7 +5,7 @@ import {dbInsertURL} from '../db/db.operation.js';
 import {ensureAuthenticated, authenticationMiddleware} from '../middlewares/auth.middleware.js';
 import {db} from '../db/index.js'
 import { urlsTable } from '../models/url.model.js';
-import {eq} from 'drizzle-orm';
+import {and, eq} from 'drizzle-orm';
 
 const router = express.Router();
 
@@ -43,6 +43,25 @@ router.get('/codes', ensureAuthenticated, async function(req, res) {
     return res.status(200).json({codes});
 });
 
+router.post('/:id', ensureAuthenticated, async function (req, res) {
+    const urlId = req.params.id;
+    const newTargetUrl = req.body.newTargetUrl;
+    console.log(urlId, newTargetUrl);
+    
+    await db
+    .update(urlsTable)
+    .set({targetURL: newTargetUrl})
+    .where(
+        and(
+        (eq(urlsTable.id, urlId)),
+        (eq(urlsTable.userId, req.user.id))
+        )
+    )
+
+    return res.status(200).json({
+        message: "URL successfully updated",
+    })
+})
 router.delete('/:id', ensureAuthenticated, async function (req, res){
     const id = req.params.id
     await db.delete(urlsTable)
