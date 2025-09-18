@@ -1,4 +1,4 @@
-# **Scalable URL Shortener Service**
+# **URLify**
 This project is a high-performance, scalable URL shortener service built with a modern backend stack. It provides a robust and secure solution for creating shortened links, complete with user authentication and authorization. The entire application is designed to be portable and easy to set up using containerization.
 
 ## **Features**
