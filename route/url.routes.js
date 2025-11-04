@@ -23,11 +23,13 @@ const shortCode =  code ?? nanoid(6);
 
 const [result] = await dbInsertURL(req, shortCode, url);
 
+const validity = 30
 
 return res.status(201).json({
     id: result.id, 
     shortCode: result.shortCode, 
-    targetURL: result.targetUrl
+    // targetURL: result.targetUrl,
+    validity: validity
 })
 });
 
