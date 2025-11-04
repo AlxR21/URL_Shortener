@@ -21,11 +21,11 @@ router.post('/signup', async (req, res) => {
     const { firstname, lastname, email, password } = validationResult.data
 
     //Validation
-    if(!firstname){
-        return res.status(400).json({
-            error: "Firstname should be filled."
-        })
-    }
+    // if(!firstname){
+    //     return res.status(400).json({
+    //         error: "Firstname should be filled."
+    //     })
+    // }
 
 const existingUser = await getUserByEmail(email);
 
