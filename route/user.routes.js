@@ -63,8 +63,8 @@ router.post('/login', async(req, res) => {
     const {password: hashedPassword} = hashPasswordWithSalt(password, user.salt);
 
     if(user.password !== hashedPassword){
-        console.log(user.password);
-        console.log(password);
+        // console.log(user.password);
+        // console.log(password);
         return res.status(400).json({
             error: "Invalid Password"
         })
