@@ -48,7 +48,6 @@ router.get('/codes', ensureAuthenticated, async function(req, res) {
 router.post('/:id', ensureAuthenticated, async function (req, res) {
     const urlId = req.params.id;
     const newTargetUrl = req.body.newTargetUrl;
-    console.log(urlId, newTargetUrl);
     
     await db
     .update(urlsTable)
